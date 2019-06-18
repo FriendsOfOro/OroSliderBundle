@@ -1,0 +1,74 @@
+{% extends 'OroUIBundle:actions:update.html.twig' %}
+{% import 'OroUIBundle::macros.html.twig' as UI %}
+
+{% oro_title_set({params : {"%name%": entity.name|default('N/A'|trans)}}) %}
+
+{% set formAction = form.vars.value.id
+    ? path('kiboko_slider_update', { id: form.vars.value.id })
+    : path('kiboko_slider_create')
+%}
+
+{% block navButtons %}
+    {{ parent() }}
+
+    {{ UI.cancelButton(path('kiboko_slider_index')) }}
+
+    {% set html = UI.saveAndCloseButton({'route': 'kiboko_slider_index'}) %}
+    {% if resource_granted('kiboko_slider_create') %}
+        {% set html = html ~ UI.saveAndNewButton({
+            'route': 'kiboko_slider_create'
+        }) %}
+    {% endif %}
+
+    {% if form.vars.value.id or resource_granted('kiboko_slider_update') %}
+        {% set html = html ~ UI.saveAndStayButton({
+            'route': 'kiboko_slider_update',
+            'params': {'id': '$id'}
+        }) %}
+    {% endif %}
+
+    {{ UI.dropdownSaveButton({'html': html}) }}
+{% endblock navButtons %}
+
+{% block pageHeader %}
+    {% if entity.id %}
+        {% set breadcrumbs = {
+            'entity':      entity,
+            'indexPath':   path('kiboko_slider_index'),
+            'indexLabel': 'kiboko.slider.entity.label'|trans,
+            'entityTitle': entity.name|default('N/A'|trans)
+        } %}
+        {{ parent() }}
+    {% else %}
+        {% set title = 'kiboko.slider.create_label'|trans %}
+        {% include 'OroUIBundle::page_title_block.html.twig' with { title: title } %}
+    {% endif %}
+{% endblock pageHeader %}
+
+{% block content_data %}
+
+    {% set id = 'slider-edit' %}
+    {% set dataBlocks = [
+        {
+            'title': 'oro.product.sections.general'|trans,
+            'class': 'active',
+            'subblocks': [
+                {
+                    'title': 'oro.product.sections.general'|trans,
+                    'data': [
+                        form_row(form.organization),
+                        form_row(form.code),
+                        form_row(form.name)
+                    ]
+                },
+            ]
+        },
+    ] %}
+
+    {% set data = {
+        'formErrors': form_errors(form),
+        'dataBlocks': dataBlocks
+    }%}
+    {{ parent() }}
+{% endblock content_data %}
+

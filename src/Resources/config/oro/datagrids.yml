@@ -1,0 +1,165 @@
+datagrids:
+    kiboko-slider-grid:
+        source:
+            type: orm
+            query:
+                select:
+                    - slider.id
+                    - slider.code
+                    - slider.name
+                from:
+                    - { table: '%kiboko.entity.slider.class%', alias: slider }
+        columns:
+            id:
+                label: kiboko.slider.entity.id.label
+            code:
+                label: kiboko.slider.entity.code.label
+            name:
+                label: kiboko.slider.entity.name.label
+        sorters:
+            columns:
+                id:
+                    data_name: slider.id
+                name:
+                    data_name: slider.name
+        filters:
+            columns:
+                id:
+                    type: number
+                    data_name: slider.id
+                name:
+                    type: string
+                    data_name: slider.name
+        properties:
+            id: ~
+            view_link:
+                type:  url
+                route: kiboko_slider_view
+                params:
+                    - id
+            update_link:
+                type:  url
+                route: kiboko_slider_update
+                params:
+                    - id
+        actions:
+            view:
+                acl_resource:  kiboko_slider_view
+                type:          navigate
+                label:         view
+                link:          view_link
+                icon:          eye
+                rowAction:     true
+            update:
+                acl_resource:  kiboko_slider_update
+                type:          navigate
+                label:         update
+                link:          update_link
+                icon:          edit
+                rowAction:     true
+        options:
+            entity_pagination: true
+
+    kiboko-base-slide-grid:
+        source:
+            type: orm
+            query:
+                select:
+                    - slide.id
+                    - slide.enabled
+                    - slide.sortOrder
+                    - slide.name
+                    - slide.startedAt
+                    - slide.expiredAt
+                    - slide.button
+                from:
+                    - { table: '%kiboko.entity.slide.class%', alias: slide }
+        columns:
+            id:
+                label: kiboko.slide.entity.id.label
+            enabled:
+                label: kiboko.slide.entity.enabled.label
+                frontend_type: select
+                choices:
+                    Inactive: 0
+                    Active: 1
+            name:
+                label: kiboko.slide.entity.name.label
+            sortOrder:
+                label: kiboko.slide.entity.sort_order.label
+            startedAt:
+                label: kiboko.slide.entity.started_at.label
+                frontend_type: datetime
+            expiredAt:
+                label: kiboko.slide.entity.expired_at.label
+                frontend_type: datetime
+            button:
+                label: kiboko.slide.entity.button.label
+        sorters:
+            columns:
+                id:
+                    data_name: slide.id
+                enabled:
+                    data_name: slide.enabled
+                sortOrder:
+                    data_name: slide.sortOrder
+                startedAt:
+                    data_name: slide.startedAt
+                expiredAt:
+                    data_name: slide.expiredAt
+            default:
+                    sortOrder: ASC
+        properties:
+            id: ~
+            view_link:
+                type:  url
+                route: kiboko_slide_view
+                params:
+                    - id
+            update_link:
+                type:  url
+                route: kiboko_slide_update
+                params:
+                    - id
+        actions:
+            view:
+                acl_resource:  kiboko_slide_view
+                type:          navigate
+                label:         view
+                link:          view_link
+                icon:          eye
+                rowAction:     true
+            update:
+                acl_resource:  kiboko_slide_update
+                type:          navigate
+                label:         update
+                link:          update_link
+                icon:          edit
+                rowAction:     true
+        options:
+            entity_pagination: true
+
+    kiboko-slides-grid:
+        extends: kiboko-base-slide-grid
+        source:
+            type: orm
+            query:
+                select:
+                    - slider.name as sliderName
+                join:
+                    left:
+                        - { join: slide.slider, alias: slider }
+        columns:
+            sliderName:
+                label: kiboko.slider.entity.name.label
+
+    kiboko-slide-slider-grid:
+        extends: kiboko-base-slide-grid
+        source:
+            query:
+                where:
+                    and:
+                        - slide.slider = :slider_id
+            bind_parameters:
+                -
+                    name: slider_id

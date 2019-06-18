@@ -1,0 +1,26 @@
+parameters:
+    kiboko.entity.slider.class: SliderBundle\Entity\Slider
+    kiboko.entity.slide.class: SliderBundle\Entity\Slide
+
+services:
+    kiboko.form.autocomplete.slider.search_handler:
+        public: false
+        parent: oro_form.autocomplete.search_handler
+        arguments:
+            - '%kiboko.entity.slider.class%'
+            - ["name"]
+        tags:
+            - { name: oro_form.autocomplete.search_handler, alias: kiboko_slider }
+
+    kiboko.repository.slider:
+        class: 'SliderBundle\Entity\Repository\SliderRepository'
+        parent: oro_entity.abstract_repository
+        arguments:
+            - '%kiboko.entity.slider.class%'
+
+    kiboko.data_provider.slider:
+        class: 'SliderBundle\Layout\DataProvider\SliderDataProvider'
+        arguments:
+            - '@kiboko.repository.slider'
+        tags:
+            - { name: layout.data_provider, alias: slider }

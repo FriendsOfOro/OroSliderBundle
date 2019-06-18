@@ -1,0 +1,21 @@
+{% extends 'OroUIBundle:actions:index.html.twig' %}
+{% import 'OroUIBundle::macros.html.twig' as UI %}
+
+{% set gridName = 'kiboko-slides-grid' %}
+{% set pageTitle = 'kiboko.slide.entity.plural_label'|trans %}
+
+{% block navButtons %}
+    {% if isDesktopVersion() %}
+        {{ UI.button({
+            'path' : path('kiboko_slider_index'),
+            'iCss': 'fa-eye',
+            'label': 'kiboko.slider.see_the_sliders'|trans
+        }) }}
+
+        {{ UI.button({
+            'path': path('kiboko_slide_create'),
+            'iCss': 'fa-plus',
+            'label': 'kiboko.slide.create_label'|trans
+        }) }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,2 @@
+bundles:
+  - { name: SliderBundle\SliderBundle, priority: 500 }

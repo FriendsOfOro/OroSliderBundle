@@ -1,0 +1,16 @@
+{% extends 'OroUIBundle:actions:index.html.twig' %}
+{% import 'OroUIBundle::macros.html.twig' as UI %}
+
+{% set gridName = 'kiboko-slider-grid' %}
+{% set pageTitle = 'kiboko.slider.entity.plural_label'|trans %}
+
+{% block navButtons %}
+    {% if isDesktopVersion() %}
+        <div class="btn-group pull-left">
+            {{ UI.addButton({
+                'path': path('kiboko_slider_create'),
+                'entity_label': 'kiboko.slider.entity.label'|trans
+            }) }}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,41 @@
+kiboko:
+    slider:
+        entity:
+            label: Slider
+            plural_label: Sliders
+            id.label: Id
+            code.label: Code
+            name.label: Nom du slider
+        create_label: Créer un slider
+        see_the_slider: Voir le slider
+        see_the_sliders: Voir les sliders
+        form:
+            update:
+                messages:
+                    saved: Slider enregistré
+    slide:
+        entity:
+            label: Slide
+            plural_label: Slides
+            id.label: Id
+            enabled.label: Activé
+            name.label: Nom du slide
+            sort_order.label: Ordre de tri
+            description.label: Description
+            url.label: URL
+            button.label: Texte du bouton
+            picture.label: Image
+            started_at.label: Date de publication
+            expired_at.label: Date de fin de publication
+            created_at.label: Date de création
+            updated_at.label: Date de mise à jour
+        create_label: Créer un slide
+        add_slide: Ajouter un slide
+        form:
+            update:
+                messages:
+                    saved: Slide enregistré
+            sections:
+                general: Général
+                dates: Dates
+                content: Contenu

@@ -1,0 +1,17 @@
+navigation:
+    menu_config:
+        items:
+            slider_list:
+                label: 'kiboko.slider.entity.plural_label'
+                route: 'kiboko_slider_index'
+            slide_list:
+                label: 'kiboko.slide.entity.plural_label'
+                route: 'kiboko_slide_index'
+
+        tree:
+            application_menu:
+                children:
+                    marketing_tab:
+                        children:
+                            slider_list: ~
+                            slide_list: ~

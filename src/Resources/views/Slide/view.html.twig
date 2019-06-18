@@ -1,0 +1,68 @@
+{% extends 'OroUIBundle:actions:view.html.twig' %}
+{% oro_title_set({params : {"%slide.id%": entity.id} }) %}
+
+{% block navButtons %}
+    {% if is_granted('EDIT', entity) %}
+        {{ UI.button({
+            'path' : path('kiboko_slider_view', { 'id': entity.slider.id }),
+            'iCss': 'fa-eye',
+            'label': 'kiboko.slider.see_the_slider'|trans
+        }) }}
+
+        {{ UI.editButton({
+            'path' : path('kiboko_slide_update', { 'id': entity.id })
+        }) }}
+    {% endif %}
+{% endblock navButtons %}
+
+{% block pageHeader %}
+    {% set breadcrumbs = {
+        'entity': entity,
+        'indexPath': path('kiboko_slider_index'),
+        'indexLabel': 'kiboko.slide.entity.label'|trans,
+        'entityTitle': entity.name|default('N/A'|trans)
+    } %}
+
+    {{ parent() }}
+{% endblock pageHeader %}
+
+{% block content_data %}
+    {% import 'OroProductBundle::image_macros.html.twig' as Image %}
+
+    {% set slideInfo %}
+        {{ UI.renderProperty('kiboko.slide.entity.id.label'|trans, entity.id) }}
+        {{ UI.renderProperty('kiboko.slide.entity.sort_order.label'|trans, entity.sortOrder) }}
+        {{ UI.renderProperty('kiboko.slide.entity.started_at.label'|trans, entity.startedAt|oro_format_datetime) }}
+        {{ UI.renderProperty('kiboko.slide.entity.expired_at.label'|trans, entity.expiredAt|oro_format_datetime) }}
+    {% endset %}
+
+    {% set slideContent %}
+        {{ UI.renderProperty('kiboko.slide.entity.name.label'|trans, entity.name) }}
+        {{ UI.renderProperty('kiboko.slide.entity.description.label'|trans, entity.description) }}
+        {{ UI.renderProperty('kiboko.slide.entity.url.label'|trans, entity.url) }}
+        {{ UI.renderProperty('kiboko.slide.entity.button.label'|trans, entity.button) }}
+        {{ UI.renderProperty('kiboko.slide.entity.picture.label'|trans, entity.picture) }}
+        <img src="{{ Image.url(entity.picture, 'product_original') }}"  alt="" />
+    {% endset %}
+
+    {% set dataBlocks = [
+        {
+        'title': 'kiboko.slide.form.sections.general'|trans,
+        'class': 'active',
+        'subblocks': [
+                {'data' : [slideInfo]},
+            ]
+        },
+        {
+        'title': 'kiboko.slide.form.sections.content'|trans,
+        'subblocks': [
+                {'data' : [slideContent]},
+            ]
+        },
+    ] %}
+
+    {% set id = 'kiboko-slider-view' %}
+    {% set data = {'dataBlocks': dataBlocks} %}
+
+    {{ parent() }}
+{% endblock content_data %}

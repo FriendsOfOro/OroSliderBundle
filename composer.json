@@ -1,0 +1,12 @@
+{
+    "name": "friendsoforo/oro-slider-bundle",
+    "license": "MIT",
+    "description": "Oro Bundle to manage sliders and slides",
+    "type": "project",
+    "require": {
+        "oro/commerce": "^3.1"
+    },
+    "autoload": {
+        "psr-4": { "SliderBundle\\": "./src/" }
+    }
+}

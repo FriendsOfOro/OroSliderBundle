@@ -1,0 +1,7 @@
+services:
+    kiboko.controller.slider:
+        class: SliderBundle\Controller\SliderController
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        calls:
+            - [setContainer, ["@service_container"]]

@@ -1,0 +1,14 @@
+search:
+    SliderBundle\Entity\Slider:
+        alias: kiboko_slider
+        title_fields: [id]
+        route:
+            name: kiboko_slider_view
+            parameters:
+                id: id
+        search_template: SliderBundle:Slider:searchResult.html.twig
+        fields:
+        -
+            name: id
+            target_type: text
+            target_fields: [id]

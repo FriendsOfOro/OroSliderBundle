@@ -1,0 +1,13 @@
+slider_bundle:
+    resource:     "@SliderBundle/Controller"
+    type:         annotation
+
+kiboko_slider_index:
+    resource: "@SliderBundle/Controller/SliderController.php"
+    type: annotation
+    prefix: /slider
+
+kiboko_slide_index:
+    resource: "@SliderBundle/Controller/SlideController.php"
+    type: annotation
+    prefix: /slide

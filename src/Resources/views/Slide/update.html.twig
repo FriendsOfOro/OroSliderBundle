@@ -1,0 +1,97 @@
+{% extends 'OroUIBundle:actions:update.html.twig' %}
+{% import 'OroUIBundle::macros.html.twig' as UI %}
+
+{% oro_title_set({params : {"%name%": entity.name|default('N/A'|trans)}}) %}
+
+{% set formAction = form.vars.value.id
+    ? path('kiboko_slide_update', { id: form.vars.value.id })
+    : path('kiboko_slide_create')
+%}
+
+{% block navButtons %}
+    {{ parent() }}
+
+    {{ UI.cancelButton(path('kiboko_slide_index')) }}
+
+    {% set html = UI.saveAndCloseButton({'route': 'kiboko_slide_index'}) %}
+    {% if resource_granted('kiboko_slide_create') %}
+        {% set html = html ~ UI.saveAndNewButton({
+            'route': 'kiboko_slide_create'
+        }) %}
+    {% endif %}
+
+    {% if form.vars.value.id or resource_granted('kiboko_slide_update') %}
+        {% set html = html ~ UI.saveAndStayButton({
+            'route': 'kiboko_slide_update',
+            'params': {'id': '$id'}
+        }) %}
+    {% endif %}
+
+    {{ UI.dropdownSaveButton({'html': html}) }}
+{% endblock navButtons %}
+
+{% block pageHeader %}
+    {% if entity.id %}
+        {% set breadcrumbs = {
+            'entity':      entity,
+            'indexPath':   path('kiboko_slide_index'),
+            'indexLabel': 'kiboko.slide.entity.label'|trans,
+            'entityTitle': entity.name|default('N/A'|trans)
+        } %}
+        {{ parent() }}
+    {% else %}
+        {% set title = 'kiboko.slide.create_label'|trans %}
+        {% include 'OroUIBundle::page_title_block.html.twig' with { title: title } %}
+    {% endif %}
+{% endblock pageHeader %}
+
+{% block content_data %}
+    {% set id = 'slider-edit' %}
+    {% set dataBlocks = [
+        {
+            'title': 'kiboko.slide.form.sections.general'|trans,
+            'class': 'active',
+            'subblocks': [
+                {
+                    'title': 'kiboko.slide.form.sections.general'|trans,
+                    'data': [
+                        form_row(form.enabled),
+                        form_row(form.organization),
+                        form_row(form.slider),
+                        form_row(form.sort_order),
+                    ]
+                },
+                {
+                    'title': 'kiboko.slide.form.sections.dates'|trans,
+                    'data': [
+                        form_row(form.startedAt),
+                        form_row(form.expiredAt),
+                    ]
+                },
+            ]
+        },
+        {
+            'title': 'kiboko.slide.form.sections.content'|trans,
+            'class': 'active',
+            'subblocks': [
+                {
+                    'title': 'kiboko.slide.form.sections.content'|trans,
+                    'data': [
+                        form_row(form.picture),
+                        form_row(form.name),
+                        form_row(form.description),
+                        form_row(form.url),
+                        form_row(form.button),
+                    ]
+                },
+            ]
+        },
+    ] %}
+
+    {% set data = {
+        'formErrors': form_errors(form),
+        'dataBlocks': dataBlocks
+    }%}
+    {{ parent() }}
+{% endblock content_data %}
+

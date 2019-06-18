@@ -1,0 +1,15 @@
+services:
+    kiboko.form.type.slider:
+        class: SliderBundle\Form\Type\SliderType
+        tags:
+            - { name: form.type, alias: kiboko_slider }
+
+    kiboko.form.type.slide:
+        class: SliderBundle\Form\Type\SlideType
+        tags:
+            - { name: form.type, alias: kiboko_slide }
+
+    kiboko.form.type.slider_select:
+        class: SliderBundle\Form\Type\SliderSelectType
+        tags:
+            - { name: form.type, alias: kiboko_slider_select }

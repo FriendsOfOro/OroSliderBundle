@@ -1,0 +1,61 @@
+{% extends 'OroUIBundle:actions:view.html.twig' %}
+{% import 'OroDataGridBundle::macros.html.twig' as dataGrid %}
+
+{% oro_title_set({params : {"%slider.id%": entity.id} }) %}
+
+{% block navButtons %}
+    {% if is_granted('EDIT', entity) %}
+        {{ UI.editButton({
+            'path' : path('kiboko_slider_update', { 'id': entity.id }),
+            'entity_label': 'kiboko.slider.entity.label'|trans
+        }) }}
+        {{ UI.addButton({
+            'path' : path('kiboko_slide_create'),
+            'label': 'kiboko.slide.add_slide'|trans
+        }) }}
+    {% endif %}
+{% endblock navButtons %}
+
+{% block pageHeader %}
+    {% set breadcrumbs = {
+        'entity': entity,
+        'indexPath': path('kiboko_slider_index'),
+        'indexLabel': 'kiboko.slider.entity.label'|trans,
+        'entityTitle': entity.name|default('N/A'|trans)
+    } %}
+
+    {{ parent() }}
+{% endblock pageHeader %}
+
+{% block content_data %}
+    {% set sliderInfo %}
+        {{ UI.renderProperty('kiboko.slider.entity.id.label'|trans, entity.id) }}
+        {{ UI.renderProperty('kiboko.slider.entity.code.label'|trans, entity.code) }}
+        {{ UI.renderProperty('kiboko.slider.entity.name.label'|trans, entity.name) }}
+    {% endset %}
+
+    {% set slidesGrid %}
+        {{ dataGrid.renderGrid('kiboko-slide-slider-grid', {slider_id: entity.id, cssClass: 'inner-grid' }) }}
+    {% endset %}
+
+    {% set dataBlocks = [
+        {
+        'title': 'oro.product.sections.general'|trans,
+        'class': 'active',
+        'subblocks': [
+                {'data' : [sliderInfo]},
+            ]
+        },
+        {
+        'title': 'kiboko.slide.entity.plural_label'|trans,
+        'subblocks': [
+                {'data' : [slidesGrid]},
+            ]
+        },
+    ] %}
+
+    {% set id = 'kiboko-slider-view' %}
+    {% set data = {'dataBlocks': dataBlocks} %}
+
+    {{ parent() }}
+{% endblock content_data %}

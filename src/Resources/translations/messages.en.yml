@@ -1,0 +1,41 @@
+kiboko:
+    slider:
+        entity:
+            label: Slider
+            plural_label: Sliders
+            id.label: Id
+            code.label: Code
+            name.label: Slider name
+        create_label: Create a slider
+        see_the_slider: See the slider
+        see_the_sliders: See sliders
+        form:
+            update:
+                messages:
+                    saved: Slider saved
+    slide:
+        entity:
+            label: Slide
+            plural_label: Slides
+            id.label: Id
+            enabled.label: Enabled
+            name.label: Slide name
+            sort_order.label: Sort order
+            description.label: Description
+            url.label: URL
+            button.label: CTA text
+            picture.label: Image
+            started_at.label: Started at
+            expired_at.label: Experid at
+            created_at.label: Created at
+            updated_at.label: Updated at
+        create_label: Create a slide
+        add_slide: Add a slide
+        form:
+            update:
+                messages:
+                    saved: Slide saved
+            sections:
+                general: General
+                dates: Dates
+                content: Content

@@ -1,0 +1,13 @@
+layout:
+    actions:
+        - '@setBlockTheme':
+            themes: 'SliderBundle:layouts:blank/oro_frontend_root/home_page_slider.html.twig'
+        - '@addTree':
+            items:
+                home_page_slider:
+                    blockType: text
+                    options:
+                        text: "=data['slider'].getSlidesBySliderCode('home-page')"
+            tree:
+                page_content:
+                    home_page_slider: ~
