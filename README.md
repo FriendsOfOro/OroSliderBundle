@@ -12,7 +12,6 @@ Installation
 
 Add repository in composer :
 
-    ```bash
     (...)
     'repositories": {
     
@@ -22,19 +21,19 @@ Add repository in composer :
      }
     (...)
 
-    ```
+
 And execute :
 
-    ```bash
     composer require friendsoforo/oro-slider-bundle
-    ```
+
     
 2. Purge Oro cache:
     ```bash
     php bin/console cache:clear --env=prod
     ```
 3. Login to Oro Admin
-1. Navigate to **Marketing => Sliders**
+
+4. Navigate to **Marketing => Sliders**
 
 Usage with Layout
 -------------------
