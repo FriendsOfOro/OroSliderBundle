@@ -8,10 +8,27 @@ Requirements
 
 Installation
 -------------------
-1. Install via Composer:
+1. Install via Composer
+
+Add repository in composer :
+
+    ```bash
+    (...)
+    'repositories": {
+    
+     "friendsoforo/oro-recaptcha-bundle": {
+       "type": "vcs",
+       "url": "git@github.com:FriendsOfOro/OroRecaptchaBundle.git"
+     }
+    (...)
+
+    ```
+And execute :
+
     ```bash
     composer require friendsoforo/oro-slider-bundle
     ```
+    
 2. Purge Oro cache:
     ```bash
     php bin/console cache:clear --env=prod
