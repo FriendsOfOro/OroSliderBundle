@@ -15,9 +15,9 @@ Add repository in composer :
     (...)
     'repositories": {
     
-     "friendsoforo/oro-recaptcha-bundle": {
+     friendsoforo/oro-slider-bundle": {
        "type": "vcs",
-       "url": "git@github.com:FriendsOfOro/OroRecaptchaBundle.git"
+       "url": "git@github.com:FriendsOfOro/OroSliderBundle.git"
      }
     (...)
 
