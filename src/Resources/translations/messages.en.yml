@@ -13,6 +13,21 @@ kiboko:
             update:
                 messages:
                     saved: Slider saved
+            choose: no
+        system_configuration:
+            groups:
+                slider_config:
+                    title: 'Slider'
+                home_page:
+                    title: 'Home Page'
+            fields:
+                use_cms_block:
+                    form_type:
+                        tooltip: Choose to use the Cms block for the slider
+                        label: Use the Cms block
+                slider_used:
+                    label:
+                        Slider used
     slide:
         entity:
             label: Slide
