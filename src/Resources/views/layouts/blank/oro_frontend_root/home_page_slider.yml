@@ -7,7 +7,7 @@ layout:
                 home_page_slider:
                     blockType: text
                     options:
-                        text: "=data['slider'].getSlidesBySliderCode('home-page-slider')"
+                        text: "=data['slider'].getSliderUsedConfig()"
             tree:
                 page_content:
                     home_page_slider: ~

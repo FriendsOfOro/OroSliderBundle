@@ -22,5 +22,6 @@ services:
         class: 'SliderBundle\Layout\DataProvider\SliderDataProvider'
         arguments:
             - '@kiboko.repository.slider'
+            - '@oro_config.manager'
         tags:
             - { name: layout.data_provider, alias: slider }
