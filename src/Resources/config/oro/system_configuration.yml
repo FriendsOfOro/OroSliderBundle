@@ -19,6 +19,18 @@ system_configuration:
                                         children:
                                             - slider_bundle.use_cms_block
                                             - slider_bundle.slider_used
+        website_configuration:
+            commerce:
+                children:
+                    design:
+                        children:
+                            slider_config:
+                                priority: 9000
+                                children:
+                                    home_page:
+                                        children:
+                                            - slider_bundle.use_cms_block
+                                            - slider_bundle.slider_used
     fields:
         slider_bundle.use_cms_block:
             data_type: boolean
