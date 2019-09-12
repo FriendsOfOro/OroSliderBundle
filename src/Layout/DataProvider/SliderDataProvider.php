@@ -34,8 +34,8 @@ class SliderDataProvider
      */
     public function getSlidesBySliderCode($sliderCode)
     {
-        $slider = $this->sliderRepository->getSlidesBySliderCode($sliderCode);
-        return $slider;
+        $slides = $this->sliderRepository->getSlidesBySliderCode($sliderCode);
+        return $slides;
     }
 
     public function getSliderUsedConfig()
