@@ -71,8 +71,11 @@ class SlideController extends Controller
      */
     public function viewAction(Slide $slide)
     {
+        $scopeEntities = $this->get('oro_scope.scope_manager')->getScopeEntities('slide');
+
         return [
-            'entity' => $slide
+            'entity' => $slide,
+            'scopeEntities' => array_reverse($scopeEntities)
         ];
     }
 }

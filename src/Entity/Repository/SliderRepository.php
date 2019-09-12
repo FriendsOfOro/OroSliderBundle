@@ -44,4 +44,6 @@ class SliderRepository extends EntityRepository
 
         return $slides;
     }
+
+
 }

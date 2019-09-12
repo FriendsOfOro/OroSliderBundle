@@ -44,6 +44,12 @@ kiboko:
             expired_at.label: Experid at
             created_at.label: Created at
             updated_at.label: Updated at
+        scope:
+            label: Slide
+            localization.label: Localization
+            website.label: Website
+            customer_group.label: Customer Group
+            customer.label: Customer
         create_label: Create a slide
         add_slide: Add a slide
         form:
@@ -54,3 +60,4 @@ kiboko:
                 general: General
                 dates: Dates
                 content: Content
+

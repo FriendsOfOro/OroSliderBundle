@@ -1,0 +1,27 @@
+SliderBundle\Entity\Slide:
+    properties:
+        enabled:
+            - NotBlank: ~
+        scopes:
+            - Oro\Bundle\CustomerBundle\Validator\Constraints\ScopeWithCustomerGroupAndCustomer: ~
+        organization:
+            - NotBlank: ~
+        slider:
+            -   NotBlank: ~
+        sortOrder:
+            -   NotBlank: ~
+        name:
+            -   NotBlank: ~
+        picture:
+            -   NotBlank: ~
+        description:
+            -   NotBlank: ~
+        url:
+            -   NotBlank: ~
+        button:
+            -   NotBlank: ~
+        startedAt:
+            -   NotBlank: ~
+        expiredAt:
+            -   NotBlank: ~
+

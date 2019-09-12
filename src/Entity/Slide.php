@@ -2,13 +2,16 @@
 
 namespace SliderBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Oro\Bundle\AttachmentBundle\Entity\File;
+use Oro\Bundle\CMSBundle\Entity\ContentBlock;
 use Oro\Bundle\EntityBundle\EntityProperty\DatesAwareTrait;
 use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
 use Doctrine\ORM\Mapping as ORM;
 use Oro\Bundle\EntityBundle\EntityProperty\DatesAwareInterface;
 use Oro\Bundle\OrganizationBundle\Entity\OrganizationAwareInterface;
 use Oro\Bundle\OrganizationBundle\Entity\Ownership\OrganizationAwareTrait;
+use Oro\Bundle\ScopeBundle\Entity\Scope;
 use SliderBundle\Model\ExtendSlide;
 
 
@@ -108,6 +111,33 @@ class Slide extends ExtendSlide implements
      * @var File
      */
     protected $picture;
+
+    /**
+     * @var ArrayCollection|Scope[]
+     *
+     * @ORM\ManyToMany(
+     *      targetEntity="Oro\Bundle\ScopeBundle\Entity\Scope"
+     * )
+     * @ORM\JoinTable(name="kiboko_slide_scope",
+     *      joinColumns={
+     *          @ORM\JoinColumn(name="slide_id", referencedColumnName="id", onDelete="CASCADE")
+     *      },
+     *      inverseJoinColumns={
+     *          @ORM\JoinColumn(name="scope_id", referencedColumnName="id", onDelete="CASCADE")
+     *      }
+     * )
+     */
+    protected $scopes;
+
+    /**
+     * Slide constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->scopes = new ArrayCollection();
+
+    }
 
     /**
      * @return int
@@ -262,5 +292,51 @@ class Slide extends ExtendSlide implements
     public function setSlider(Slider $slider): void
     {
         $this->slider = $slider;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getScopes()
+    {
+        return $this->scopes;
+    }
+
+    /**
+     * @param Scope $scope
+     *
+     * @return Slide
+     */
+    public function addScope(Scope $scope)
+    {
+        if (!$this->scopes->contains($scope)) {
+            $this->scopes->add($scope);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Scope $scope
+     *
+     * @return Slide
+     */
+    public function removeScope(Scope $scope)
+    {
+        if ($this->scopes->contains($scope)) {
+            $this->scopes->removeElement($scope);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Slide
+     */
+    public function resetScopes()
+    {
+        $this->scopes->clear();
+
+        return $this;
     }
 }

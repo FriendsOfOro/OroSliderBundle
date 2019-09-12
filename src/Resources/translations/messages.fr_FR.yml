@@ -43,6 +43,12 @@ kiboko:
             expired_at.label: Date de fin de publication
             created_at.label: Date de création
             updated_at.label: Date de mise à jour
+        scope:
+            label: Slide
+            localization.label: Traduction
+            website.label: Site Web
+            customer_group.label: Groupe de client
+            customer.label: Client
         create_label: Créer un slide
         add_slide: Ajouter un slide
         form:

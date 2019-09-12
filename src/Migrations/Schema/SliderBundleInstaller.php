@@ -27,7 +27,7 @@ class SliderBundleInstaller implements Installation, AttachmentExtensionAwareInt
      */
     public function getMigrationVersion()
     {
-        return 'v1_0_1';
+        return 'v1_0_2';
     }
 
     /**

@@ -1,4 +1,5 @@
 {% extends 'OroUIBundle:actions:view.html.twig' %}
+{% import 'OroScopeBundle::macros.html.twig' as scope %}
 {% oro_title_set({params : {"%slide.id%": entity.id} }) %}
 
 {% block navButtons %}
@@ -58,6 +59,12 @@
         'subblocks': [
                 {'data' : [slideContent]},
             ]
+        },
+        {
+            'title': 'oro.cms.contentblock.sections.use_for.label'|trans,
+            'subblocks': [{
+            'data' : [scope.renderRestrictionsView(scopeEntities, entity.scopes)]
+        }]
         },
     ] %}
 

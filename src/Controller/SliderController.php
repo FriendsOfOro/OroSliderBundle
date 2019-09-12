@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class SliderController extends Controller
 {
@@ -74,5 +75,20 @@ class SliderController extends Controller
         return [
             'entity' => $slider
         ];
+    }
+
+    /**
+     * @Route("/delete/{id}", name="kiboko_slider_delete", requirements={"id"="\d+"})
+     *
+     * @param Slider $slider
+     * @return Response
+     */
+    public function deleteAction(Slider $slider)
+    {
+        $em = $this->get('doctrine')->getManager();
+        $em->remove($slider);
+        $em->flush();
+
+        return new Response('', Response::HTTP_NO_CONTENT);
     }
 }

@@ -5,6 +5,7 @@ namespace SliderBundle\Form\Type;
 use Oro\Bundle\AttachmentBundle\Form\Type\FileType;
 use Oro\Bundle\FormBundle\Form\Type\OroDateTimeType;
 use Oro\Bundle\FormBundle\Form\Type\OroRichTextType;
+use Oro\Bundle\ScopeBundle\Form\Type\ScopeCollectionType;
 use SliderBundle\Entity\Slide;
 use Oro\Bundle\OrganizationBundle\Form\Type\OrganizationSelectType;
 use Symfony\Component\Form\AbstractType;
@@ -98,6 +99,16 @@ class SlideType extends AbstractType
                 OroDateTimeType::class,
                 [
                     'required' => true,
+                ]
+            )
+            ->add(
+                'scopes',
+                ScopeCollectionType::class,
+                [
+                    'label' => 'oro.cms.contentblock.scopes.label',
+                    'entry_options' => [
+                        'scope_type' => 'slider'
+                    ],
                 ]
             )
         ;
