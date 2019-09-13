@@ -3,7 +3,6 @@
 namespace SliderBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Oro\Bundle\AttachmentBundle\Entity\File;
 use SliderBundle\Entity\Slide;
 use SliderBundle\Entity\Slider;
 

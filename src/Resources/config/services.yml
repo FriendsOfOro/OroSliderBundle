@@ -18,10 +18,41 @@ services:
         arguments:
             - '%kiboko.entity.slider.class%'
 
+
     kiboko.data_provider.slider:
         class: 'SliderBundle\Layout\DataProvider\SliderDataProvider'
         arguments:
             - '@kiboko.repository.slider'
             - '@oro_config.manager'
+            - "@oro_scope.scope_manager"
+            - "@kiboko.slide.resolver"
         tags:
             - { name: layout.data_provider, alias: slider }
+
+    kiboko.slide.resolver:
+        class: 'SliderBundle\Slide\SlideResolver'
+        arguments:
+            - "@property_accessor"
+
+
+    kiboko.slider.customer_scope_criteria_provider.link:
+        public: false
+        tags:
+            - { name: oro_service_link, service: oro_customer.customer_scope_criteria_provider }
+            - { name: oro_scope.provider, scopeType: slide, priority: 30 }
+
+    kiboko.slider.customer_group_scope_criteria_provider.link:
+        public: false
+        tags:
+            - { name: oro_service_link, service: oro_customer.customer_group_scope_criteria_provider }
+            - { name: oro_scope.provider, scopeType: slide, priority: 30 }
+
+    kiboko.slider.website_scope_criteria_provider:
+        tags:
+            - { name: oro_service_link, service: oro_website.website_scope_criteria_provider }
+            - {name: oro_scope.provider, scopeType: slide, priority: 30}
+
+    kiboko.slider.localization_criteria_provider:
+        tags:
+            - { name: oro_service_link, service: oro_cms.localization_scope_criteria_provider }
+            - { name: oro_scope.provider, scopeType: slide, priority: 30}

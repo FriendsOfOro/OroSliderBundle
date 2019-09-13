@@ -107,7 +107,7 @@ class SlideType extends AbstractType
                 [
                     'label' => 'oro.cms.contentblock.scopes.label',
                     'entry_options' => [
-                        'scope_type' => 'slider'
+                        'scope_type' => 'slide'
                     ],
                 ]
             )
