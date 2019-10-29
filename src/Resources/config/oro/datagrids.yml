@@ -42,6 +42,11 @@ datagrids:
                 route: kiboko_slider_update
                 params:
                     - id
+            delete_link:
+                type: url
+                route: kiboko_slider_delete
+                params:
+                    - id
         actions:
             view:
                 acl_resource:  kiboko_slider_view
@@ -57,6 +62,11 @@ datagrids:
                 link:          update_link
                 icon:          edit
                 rowAction:     true
+            delete:
+                type: ajaxdelete
+                label: delete
+                link: delete_link
+                icon: trash
         options:
             entity_pagination: true
 

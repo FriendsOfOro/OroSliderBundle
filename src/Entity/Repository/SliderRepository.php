@@ -3,7 +3,6 @@
 namespace SliderBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Oro\Bundle\AttachmentBundle\Entity\File;
 use SliderBundle\Entity\Slide;
 use SliderBundle\Entity\Slider;
 
@@ -31,15 +30,19 @@ class SliderRepository extends EntityRepository
         $slides = $qb
             ->select('slide')
             ->from(Slide::class, 'slide')
-            ->from(Slider::class, 'slider')
-            ->where("slider.code = '".$sliderCode."'")
+            ->from(Slider::class,'slider')
+            ->where('slide.slider = slider')
+            ->andWhere('slider.code = :sliderCode')
             ->andWhere('slide.enabled = true')
             ->andWhere("slide.startedAt <= '".date('Y-m-d H:i:s')."'")
             ->andWhere("slide.expiredAt >= '".date('Y-m-d H:i:s')."'")
             ->orderBy('slide.sortOrder', 'ASC')
+            ->setParameter('sliderCode', $sliderCode)
             ->getQuery()
             ->getResult();
 
         return $slides;
     }
+
+
 }
