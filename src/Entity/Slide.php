@@ -108,11 +108,6 @@ class Slide extends ExtendSlide implements
     private $slider;
 
     /**
-     * @var File
-     */
-    protected $picture;
-
-    /**
      * @var ArrayCollection|Scope[]
      *
      * @ORM\ManyToMany(
