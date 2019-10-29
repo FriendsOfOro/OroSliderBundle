@@ -27,7 +27,7 @@ class SliderBundleInstaller implements Installation, AttachmentExtensionAwareInt
      */
     public function getMigrationVersion()
     {
-        return 'v1_0_2';
+        return 'v1_0_0';
     }
 
     /**
@@ -89,7 +89,14 @@ class SliderBundleInstaller implements Installation, AttachmentExtensionAwareInt
             $schema,
             'kiboko_slider_slide',
             'picture',
-            [],
+            [
+                'importexport' => [
+                    'excluded' => false,
+                ],
+                'attachment' => [
+                    'acl_protected' => false,
+                ]
+            ],
             7,
             100,
             100
