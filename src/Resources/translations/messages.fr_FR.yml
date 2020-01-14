@@ -59,3 +59,7 @@ kiboko:
                 general: Général
                 dates: Dates
                 content: Contenu
+slider:
+    entity_label: Slider
+    slide:
+        entity_label: Slide

@@ -2,6 +2,8 @@
 
 namespace SliderBundle\Controller;
 
+use Oro\Bundle\SecurityBundle\Annotation\Acl;
+use Oro\Bundle\SecurityBundle\Annotation\AclAncestor;
 use SliderBundle\Entity\Slide;
 use SliderBundle\Form\Type\SlideType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,6 +17,12 @@ class SlideController extends Controller
     /**
      * @Route("/", name="kiboko_slide_index")
      * @Template
+     * @Acl(
+     *   id="kiboko_slide_view",
+     *   type="entity",
+     *   class="SliderBundle:Slide",
+     *   permission="VIEW"
+     * )
      *
      * @return array
      */
@@ -28,6 +36,13 @@ class SlideController extends Controller
     /**
      * @Route("/create", name="kiboko_slide_create")
      * @Template("SliderBundle:Slide:update.html.twig")
+     * @Acl(
+     *   id="kiboko_slide_create",
+     *   type="entity",
+     *   class="SliderBundle:Slide",
+     *   permission="CREATE"
+     * )
+     *
      * @param Request $request
      * @return array|RedirectResponse
      */
@@ -39,6 +54,12 @@ class SlideController extends Controller
     /**
      * @Route("/update/{id}", name="kiboko_slide_update", requirements={"id"="\d+"})
      * @Template
+     * @Acl(
+     *   id="kiboko_slide_update",
+     *   type="entity",
+     *   class="SliderBundle:Slide",
+     *   permission="UPDATE"
+     * )
      *
      * @param Slide $slide
      * @param Request $request
@@ -65,6 +86,7 @@ class SlideController extends Controller
      * @Route("/view/{id}", name="kiboko_slide_view", requirements={"id"="\d+"})
      *
      * @Template()
+     * @AclAncestor("kiboko_slide_view")
      *
      * @param Slide $slide
      * @return array
