@@ -60,4 +60,7 @@ kiboko:
                 general: General
                 dates: Dates
                 content: Content
-
+slider:
+    entity_label: Slider
+    slide:
+        entity_label: Slide

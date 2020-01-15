@@ -4,9 +4,11 @@ navigation:
             slider_list:
                 label: 'kiboko.slider.entity.plural_label'
                 route: 'kiboko_slider_index'
+                acl_resource_id: kiboko_slider_view
             slide_list:
                 label: 'kiboko.slide.entity.plural_label'
                 route: 'kiboko_slide_index'
+                acl_resource_id: kiboko_slide_view
 
         tree:
             application_menu:
