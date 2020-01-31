@@ -70,31 +70,31 @@ class Slide extends ExtendSlide implements
 
     /**
      * @var string
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var string
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
     private $url;
 
     /**
      * @var string
-     * @ORM\Column(name="button", type="string", length=255)
+     * @ORM\Column(name="button", type="string", length=255, nullable=true)
      */
     private $button;
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="started_at", type="datetime")
+     * @ORM\Column(name="started_at", type="datetime", nullable=true)
      */
     private $startedAt;
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="expired_at", type="datetime")
+     * @ORM\Column(name="expired_at", type="datetime", nullable=true)
      */
     private $expiredAt;
 
