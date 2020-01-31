@@ -21,37 +21,45 @@ class AlterSliderTable implements Migration
         $this->alterKibokoSlider($schema);
     }
 
-    public function alterKibokoSliderSlide(Schema $schema) {
+    public function alterKibokoSliderSlide(Schema $schema)
+    {
         $table = $schema->getTable('kiboko_slider_slide');
 
-        $table->removeForeignKey('FK_F33E6B592CCC9638'); // slider_id
-        $table->addForeignKeyConstraint(
-            $schema->getTable('kiboko_slider'),
-            ['slider_id'],
-            ['id'],
-            ['onUpdate' => null, 'onDelete' => 'SET NULL']
-        );
+        if ($table->hasForeignKey('FK_F33E6B592CCC9638')) {
+            $table->removeForeignKey('FK_F33E6B592CCC9638'); // slider_id
+            $table->addForeignKeyConstraint(
+                $schema->getTable('kiboko_slider'),
+                ['slider_id'],
+                ['id'],
+                ['onUpdate' => null, 'onDelete' => 'SET NULL']
+            );
+        }
 
-        $table->removeForeignKey('FK_F33E6B5932C8A3DE'); // organization_id
-        $table->addForeignKeyConstraint(
-            $schema->getTable('oro_organization'),
-            ['organization_id'],
-            ['id'],
-            ['onUpdate' => null, 'onDelete' => 'SET NULL']
-        );
+        if ($table->hasForeignKey('FK_F33E6B5932C8A3DE')) {
+            $table->removeForeignKey('FK_F33E6B5932C8A3DE'); // organization_id
+            $table->addForeignKeyConstraint(
+                $schema->getTable('oro_organization'),
+                ['organization_id'],
+                ['id'],
+                ['onUpdate' => null, 'onDelete' => 'SET NULL']
+            );
+        }
         $table->changeColumn('organization_id', ['notnull' => false]);
     }
 
-    public function alterKibokoSlider(Schema $schema) {
+    public function alterKibokoSlider(Schema $schema)
+    {
         $table = $schema->getTable('kiboko_slider');
 
-        $table->removeForeignKey('FK_784807632C8A3DE'); // organization_id
-        $table->addForeignKeyConstraint(
-            $schema->getTable('oro_organization'),
-            ['organization_id'],
-            ['id'],
-            ['onUpdate' => null, 'onDelete' => 'SET NULL']
-        );
+        if ($table->hasForeignKey('FK_784807632C8A3DE')) {
+            $table->removeForeignKey('FK_784807632C8A3DE'); // organization_id
+            $table->addForeignKeyConstraint(
+                $schema->getTable('oro_organization'),
+                ['organization_id'],
+                ['id'],
+                ['onUpdate' => null, 'onDelete' => 'SET NULL']
+            );
+        }
         $table->changeColumn('organization_id', ['notnull' => false]);
     }
 }
