@@ -40,8 +40,6 @@ class AlterSliderTable implements Migration
             ['onUpdate' => null, 'onDelete' => 'SET NULL']
         );
         $table->changeColumn('organization_id', ['notnull' => false]);
-
-        $table->addColumn('serialized_data', 'text', ['default' => null, 'comment' => '(DC2Type:array)']);
     }
 
     public function alterKibokoSlider(Schema $schema) {
