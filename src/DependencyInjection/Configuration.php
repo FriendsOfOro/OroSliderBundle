@@ -22,7 +22,7 @@ class Configuration implements ConfigurationInterface
             $rootNode,
                 [
                     'use_cms_block' => ['type' => 'boolean', 'value' => false],
-                    'slider_used' => ['type' => 'object', 'value' => null]
+                    'slider' => ['type' => 'integer', 'value' => null],
             ]
         );
 

@@ -27,6 +27,9 @@ kiboko:
                 slider_used:
                     label:
                         Slider utilisé
+                slider:
+                    label:
+                        Slider
     slide:
         entity:
             label: Slide
