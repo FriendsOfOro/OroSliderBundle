@@ -57,14 +57,7 @@ class SliderDataProvider
     {
         /** @var Slider $slider */
         $sliderId = $this->config->get('slider_bundle.slider');
-        $slider = $this->sliderRepository->find($sliderId);
-        if(is_null($slider))
-        {
-            return null;
-        }
-        else {
-            return $this->getSlidesBySliderCode($slider->getCode());
-        }
+        return  $this->sliderRepository->find($sliderId);
     }
 
 }
