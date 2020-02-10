@@ -56,7 +56,8 @@ class SliderDataProvider
     public function getSliderUsedConfig()
     {
         /** @var Slider $slider */
-        $slider = $this->config->get('slider_bundle.slider_used');
+        $sliderId = $this->config->get('slider_bundle.slider');
+        $slider = $this->sliderRepository->find($sliderId);
         if(is_null($slider))
         {
             return null;

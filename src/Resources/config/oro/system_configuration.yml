@@ -18,7 +18,7 @@ system_configuration:
                                     home_page:
                                         children:
                                             - slider_bundle.use_cms_block
-                                            - slider_bundle.slider_used
+                                            - slider_bundle.slider
         website_configuration:
             commerce:
                 children:
@@ -30,7 +30,7 @@ system_configuration:
                                     home_page:
                                         children:
                                             - slider_bundle.use_cms_block
-                                            - slider_bundle.slider_used
+                                            - slider_bundle.slider
     fields:
         slider_bundle.use_cms_block:
             data_type: boolean
@@ -41,12 +41,11 @@ system_configuration:
                 required: true
                 constraints:
                     -   NotBlank: ~
-        slider_bundle.slider_used:
-            data_type: object
-            type: SliderBundle\Form\Type\SliderSelectType
+        slider_bundle.slider:
+            data_type: integer
+            type: Symfony\Component\Form\Extension\Core\Type\IntegerType
             options:
-                label: kiboko.slider.system_configuration.fields.slider_used.label
-                placeholder: kiboko.slider.system_configuration.fields.slider_used.placeholder
+                label: kiboko.slider.system_configuration.fields.slider.label
                 required: true
                 constraints:
                     -   NotBlank: ~
