@@ -23,12 +23,12 @@ class SystemConfigListener
 
     /**
      * @param ManagerRegistry $registry
-     * @param string $userClass
+     * @param string $sliderClass
      */
-    public function __construct(ManagerRegistry $registry, $userClass)
+    public function __construct(ManagerRegistry $registry, $sliderClass)
     {
         $this->registry = $registry;
-        $this->sliderClass = $userClass;
+        $this->sliderClass = $sliderClass;
     }
 
     /**
