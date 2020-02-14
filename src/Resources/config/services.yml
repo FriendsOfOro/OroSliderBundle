@@ -56,3 +56,17 @@ services:
         tags:
             - { name: oro_service_link, service: oro_cms.localization_scope_criteria_provider }
             - { name: oro_scope.provider, scopeType: slide, priority: 30}
+
+    kiboko.slider.repository.slider_class:
+        parent: oro_entity.abstract_repository
+        arguments:
+            - '%kiboko.entity.slider.class%'
+
+    kiboko.slider.event_listener.system_config:
+        class: SliderBundle\EventListener\SystemConfigListener
+        arguments:
+            - "@doctrine"
+            - '%kiboko.entity.slider.class%'
+        tags:
+            - { name: kernel.event_listener, event: oro_config.settings_form_preset, method: onFormPreSetData }
+            - { name: kernel.event_listener, event: oro_config.settings_before_save.slider_bundle.slider, method: onSettingsSaveBefore }

@@ -2,8 +2,12 @@
 
 namespace SliderBundle\Form\Type;
 
+use Doctrine\Common\Persistence\ObjectRepository;
 use Oro\Bundle\FormBundle\Form\Type\OroEntitySelectOrCreateInlineType;
+use SliderBundle\Form\DataTransformer\SliderModelTransformer;
+use SliderBundle\Form\DataTransformer\SliderViewTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SliderSelectType extends AbstractType
@@ -17,7 +21,6 @@ class SliderSelectType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'create_enabled' => false,
                 'autocomplete_alias' => 'kiboko_slider',
                 'create_form_route' => 'kiboko_slider_create',
                 'grid_name' => 'kiboko-slider-grid',
@@ -26,6 +29,14 @@ class SliderSelectType extends AbstractType
                 ]
             ]
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getParent()
+    {
+        return OroEntitySelectOrCreateInlineType::class;
     }
 
     /**
@@ -42,13 +53,5 @@ class SliderSelectType extends AbstractType
     public function getBlockPrefix()
     {
         return self::NAME;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
-    {
-        return OroEntitySelectOrCreateInlineType::class;
     }
 }
