@@ -21,6 +21,7 @@ class SliderSelectType extends AbstractType
     {
         $resolver->setDefaults(
             [
+                'create_enabled' => false,
                 'autocomplete_alias' => 'kiboko_slider',
                 'create_form_route' => 'kiboko_slider_create',
                 'grid_name' => 'kiboko-slider-grid',
