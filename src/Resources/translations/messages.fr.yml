@@ -10,6 +10,7 @@ kiboko:
         see_the_slider: Voir le slider
         see_the_sliders: Voir les sliders
         form:
+            choose_slider: Choisissez un slider
             update:
                 messages:
                     saved: Slider enregistré

@@ -22,8 +22,8 @@ class Configuration implements ConfigurationInterface
             $rootNode,
                 [
                     'use_cms_block' => ['type' => 'boolean', 'value' => false],
-                    'slider' => ['type' => 'integer', 'value' => null],
-            ]
+                    'slider' => ['type' => 'string', 'value' => null],
+                ]
         );
 
         return $treeBuilder;

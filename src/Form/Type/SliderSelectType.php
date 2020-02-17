@@ -2,8 +2,12 @@
 
 namespace SliderBundle\Form\Type;
 
+use Doctrine\Common\Persistence\ObjectRepository;
 use Oro\Bundle\FormBundle\Form\Type\OroEntitySelectOrCreateInlineType;
+use SliderBundle\Form\DataTransformer\SliderModelTransformer;
+use SliderBundle\Form\DataTransformer\SliderViewTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SliderSelectType extends AbstractType
@@ -31,6 +35,14 @@ class SliderSelectType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    public function getParent()
+    {
+        return OroEntitySelectOrCreateInlineType::class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return $this->getBlockPrefix();
@@ -42,13 +54,5 @@ class SliderSelectType extends AbstractType
     public function getBlockPrefix()
     {
         return self::NAME;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
-    {
-        return OroEntitySelectOrCreateInlineType::class;
     }
 }

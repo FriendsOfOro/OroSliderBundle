@@ -42,10 +42,15 @@ system_configuration:
                 constraints:
                     -   NotBlank: ~
         slider_bundle.slider:
-            data_type: integer
-            type: Symfony\Component\Form\Extension\Core\Type\IntegerType
+            data_type: string
+            type: SliderBundle\Form\Type\SliderSelectType
             options:
                 label: kiboko.slider.system_configuration.fields.slider.label
+                tooltip: kiboko.slider.system_configuration.fields.slider.label.tooltip
                 required: true
+                configs:
+                    placeholder: 'kiboko.slider.form.choose_slider'
+                    result_template_twig: 'SliderBundle:Slider:Autocomplete/result.html.twig'
+                    selection_template_twig: 'SliderBundle:Slider:Autocomplete/selection.html.twig'
                 constraints:
                     -   NotBlank: ~
