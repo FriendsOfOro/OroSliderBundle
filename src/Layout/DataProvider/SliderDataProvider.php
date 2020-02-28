@@ -60,4 +60,14 @@ class SliderDataProvider
         return  $this->sliderRepository->find($sliderId);
     }
 
+    public function getSliderCodeUsedConfig()
+    {
+        $sliderId = $this->config->get('slider_bundle.slider');
+        
+        /** @var Slider $slider */
+        $slider = $this->sliderRepository->find($sliderId);
+        
+        return $slider->getCode();
+    }
+
 }
