@@ -26,7 +26,6 @@ class SlideType extends AbstractType
                 'enabled',
                 CheckboxType::class,
                 [
-                    'required' => true,
                     'label' => 'oro.user.enabled.label'
                 ]
             )
