@@ -26,6 +26,7 @@ class SliderRepository extends EntityRepository
 
     public function getSlidesBySliderCode($sliderCode)
     {
+        $date = date('Y-m-d H:i:s');
         $qb = $this->getEntityManager()->createQueryBuilder();
         $slides = $qb
             ->select('slide')
@@ -34,10 +35,11 @@ class SliderRepository extends EntityRepository
             ->where('slide.slider = slider')
             ->andWhere('slider.code = :sliderCode')
             ->andWhere('slide.enabled = true')
-            ->andWhere("slide.startedAt <= '".date('Y-m-d H:i:s')."'")
-            ->andWhere("slide.expiredAt >= '".date('Y-m-d H:i:s')."'")
+            ->andWhere('slide.startedAt <= :date')
+            ->andWhere('slide.expiredAt >= :date')
             ->orderBy('slide.sortOrder', 'ASC')
             ->setParameter('sliderCode', $sliderCode)
+            ->setParameter('date', $date)
             ->getQuery()
             ->getResult();
 

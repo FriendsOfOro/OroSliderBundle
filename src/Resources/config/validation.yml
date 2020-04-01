@@ -1,7 +1,5 @@
 SliderBundle\Entity\Slide:
     properties:
-        enabled:
-            - NotBlank: ~
         scopes:
             - Oro\Bundle\CustomerBundle\Validator\Constraints\ScopeWithCustomerGroupAndCustomer: ~
         organization:
