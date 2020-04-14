@@ -26,6 +26,7 @@ services:
             - '@oro_config.manager'
             - "@oro_scope.scope_manager"
             - "@kiboko.slide.resolver"
+            - "@oro_security.token_accessor"
         tags:
             - { name: layout.data_provider, alias: slider }
 
