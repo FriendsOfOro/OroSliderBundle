@@ -56,7 +56,7 @@ class SliderDataProvider
         if (!is_null($slidesVisibles)) {
             return $slidesVisibles;
         }
-        return;
+        return [];
     }
 
     public function getSliderUsedConfig()
@@ -66,7 +66,7 @@ class SliderDataProvider
         if (!is_null($sliderId)) {
             return $this->sliderRepository->find($sliderId);
         }
-        return;
+        return null;
     }
 
     public function getSliderCodeUsedConfig()
@@ -75,6 +75,6 @@ class SliderDataProvider
         if (!is_null($slider)) {
             return $slider->getCode();
         }
-        return;
+        return null;
     }
 }
