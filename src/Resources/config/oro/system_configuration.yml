@@ -7,7 +7,7 @@ system_configuration:
             title: kiboko.slider.system_configuration.groups.home_page.title
 
     tree:
-        system_configuration:
+        organization_configuration:
             commerce:
                 children:
                     design:

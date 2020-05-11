@@ -8,7 +8,6 @@ use SliderBundle\Entity\Slider;
 
 class SliderRepository extends EntityRepository
 {
-
     public function findOneByCode($sliderCode)
     {
         $qb = $this->createQueryBuilder('slider');
@@ -24,7 +23,7 @@ class SliderRepository extends EntityRepository
         return $slider;
     }
 
-    public function getSlidesBySliderCode($sliderCode)
+    public function getSlidesBySliderCode($sliderCode, $organization)
     {
         $date = date('Y-m-d H:i:s');
         $qb = $this->getEntityManager()->createQueryBuilder();
@@ -37,14 +36,14 @@ class SliderRepository extends EntityRepository
             ->andWhere('slide.enabled = true')
             ->andWhere('slide.startedAt <= :date')
             ->andWhere('slide.expiredAt >= :date')
+            ->andWhere('slider.organization = :organization')
             ->orderBy('slide.sortOrder', 'ASC')
             ->setParameter('sliderCode', $sliderCode)
             ->setParameter('date', $date)
+            ->setParameter('organization', $organization)
             ->getQuery()
             ->getResult();
 
         return $slides;
     }
-
-
 }
